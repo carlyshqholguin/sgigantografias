@@ -1,0 +1,95 @@
+{% extends 'index.html' %}
+
+{% block contenido %}
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body text-center">
+          <div style="display: flex;width: 100%;justify-content: space-between;align-items: center;padding-left: 10px;padding-right: 10px;">
+            <h4 class="card-title">REGISTRAR NUEVA VENTA</h4>
+            <a class="btn " style="border-radius: 10px;background-color: rgb(224, 224, 224);font-weight: bold;padding: 10px;color: rgb(92, 92, 92);align-items: center;" >Cancelar</a>
+          </div>
+          
+          <div class="table-responsive" style="width: 100%;display: flex;justify-content: center;padding: 20px;">
+            <form method="post" style="max-width: 250px;display: flex;flex-direction: column;align-items: center;text-align: left;gap: 5px;">
+                {% csrf_token %}
+                <label for="id_cliente" style="text-align: left;width: 100% ;margin: 0px;">Cliente:</label>
+
+                <select class="form-control" id="id_cliente" name="cliente">
+                    {% for cliente in form.fields.cliente.queryset %}
+                        <option value="{{ cliente.id_cliente }}" {% if cliente.id_cliente == form.cliente.value %}selected{% endif %}>{{ cliente }}</option>
+                    {% endfor %}
+                </select>
+                <label for="id_tipo" style="text-align: left;width: 100% ;margin: 0px;">Tipo:</label>
+
+                <select class="form-control" id="id_tipo" name="tipo">
+                    {% for choice in form.fields.tipo.choices %}
+                        <option value="{{ choice.0 }}" {% if form.tipo.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                    {% endfor %}
+                </select>
+                <label for="id_inventario" style="text-align: left;width: 100% ;margin: 0px;">Inventario:</label>
+
+                <select class="form-control" id="id_inventario" name="inventario">
+                    {% for inventario in form.fields.inventario.queryset %}
+                        <option value="{{ inventario.id_inventario }}" {% if inventario.id_inventario == form.inventario.value %}selected{% endif %}>{{ inventario }}</option>
+                    {% endfor %}
+                </select>
+            
+            
+                <label for="id_costo_impresion" style="text-align: left;width: 100% ;margin: 0px;">Costo de Impresión:</label>
+                <input type="number" class="form-control" id="id_costo_impresion" name="costo_impresion" value="{{ form.costo_impresion.value }}">
+            
+                <label for="id_costo_trabajo" style="text-align: left;width: 100% ;margin: 0px;">Costo de trabajo:</label>
+
+                <input type="number" class="form-control" id="id_costo_trabajo" name="costo_trabajo" value="{{ form.costo_trabajo.value }}">
+                <div style="display: flex;gap: 5px;align-items: center;justify-content: start;">
+                    <label for="id_factura">Facturado:</label>
+                    <input type="checkbox" class="form-control" id="id_factura" name="factura" {% if form.factura.value %}checked{% endif %}>
+                
+                </div>
+            
+                <label for="id_insumos" style="text-align: left;width: 100% ;margin: 0px;">Insumos:</label>
+
+                <select class="form-control" multiple id="id_insumos" name="insumos">
+                    {% for insumo in form.fields.insumos.queryset %}
+                        <option value="{{ insumo.pk }}" {% if insumo in form.insumos.value %}selected{% endif %}>{{ insumo }}</option>
+                    {% endfor %}
+                </select>
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div id="loadingMessage" style="display: none;">
+                    <p>Guardando y generando analisis IA, por favor espere...</p>
+                    <!-- Puedes añadir aquí un icono de carga si lo deseas -->
+                </div>              
+
+            
+                <button class="btn btn-primary" style="margin-top: 10px;" type="submit" id="submitBtn">Guardar Venta</button>
+            </form>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+        // Selección del formulario en lugar del botón
+        document.querySelector('form').addEventListener('submit', function() {
+            // Muestra el mensaje de carga
+            document.getElementById('loadingMessage').style.display = 'block';
+            // Deshabilita el botón de envío para evitar envíos múltiples
+            document.getElementById('submitBtn').disabled = true;
+        });
+    </script>
+    
+    
+    
+    
+    
+    
+  </div>
+{% endblock %}

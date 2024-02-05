@@ -1,0 +1,78 @@
+#header{
+    background-color: black;
+}
+.module h2, .module caption, .inline-group h2{
+    background-color: rgb(85, 40, 10);
+    color: white !important;
+    font-weight: bolder;
+}
+div.breadcrumbs{
+    background-color: rgb(85, 40, 10);
+    
+}
+div.breadcrumbs a{
+    color: white !important;
+    
+}
+caption a{
+    color: white !important;
+}
+a{
+    color: rgb(148, 148, 148) !important;
+}
+.inline-group .group .djn-group .djn-tabular .djn-group-root{
+    width: 100%;
+    max-width: 400px;
+}
+a.addlink{
+    margin-top: 10px;
+    
+    color: rgb(85, 40, 10) !important;
+    font-weight: bolder;
+  
+   
+}
+ul.object-tools li a.addlink{
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(3, 3, 3);
+    padding-top: 5px;
+    font-weight: bolder;
+    padding-bottom: 5px;
+}
+div.selector-chosen h2{
+    background-color: rgb(85, 40, 10);
+}
+p.deletelink-box a.deletelink{
+    padding-bottom: 20px;
+    font-weight: bolder;
+    color: white !important;
+}
+div#user-tools{
+    font-weight: bolder;
+    color: white !important;
+}
+div#user-tools a{
+    font-weight: bolder;
+    color: rgb(224, 184, 2) !important;
+}
+input[type=submit]{
+    background-color: rgb(94, 94, 94) !important;
+}
+input[type=submit].default{
+    background-color: rgb(0, 0, 0) !important;
+}
+input#searchbar{
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+input[value="Buscar"]{
+    background-color: rgb(85, 40, 10) !important;
+    font-weight: bolder;
+    color: white !important;
+}
+a.button.cancel-link{
+    padding-top: 15px !important;
+    padding-bottom: 30px !important;
+    font-weight: bolder;
+    color: white !important;
+}

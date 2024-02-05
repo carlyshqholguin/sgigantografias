@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+
+{% block contenido %}
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body text-center">
+          <h4 class="card-title">FACTURAS</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th style="text-align: left;">ID</th>
+                  <th style="text-align: left;">Tipo</th>
+                  <th style="text-align: left;">Detalle</th>
+                  <th style="text-align: left;">Total</th>
+                  <th style="text-align: left;">Fecha de registro</th>
+                  <th >Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for factura in facturas %}
+                <tr>
+                  <td style="text-align: left;">{{factura.id_factura}}</td>
+                  <td style="text-align: left;">{{factura.tipo}}</td>
+                  <td style="text-align: left;">{{factura.detalle}}</td>
+                  <td style="text-align: left;">Bs. {{factura.total}}</td>
+                  <td style="text-align: left;">{{factura.created_at}}</td>
+                  <td><label class="badge badge-success">Completado</label></td>
+                </tr>
+              
+                    
+                {% endfor %}
+               
+              </tbody>
+            </table>
+            {% if not facturas %}
+            <div style="width: 100%;text-align: center;justify-content: center;padding: 10px;">
+                <div style="text-align: center;width: 100%;justify-content: center;">No hay facturas registradas</div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    
+  </div>
+{% endblock %}

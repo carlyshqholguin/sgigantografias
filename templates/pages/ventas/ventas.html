@@ -1,0 +1,148 @@
+{% extends 'index.html' %}
+
+{% block contenido %}
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body text-center">
+          <div style="display: flex;width: 100%;justify-content: space-between;align-items: center;padding-left: 10px;padding-right: 10px;">
+            <h4 class="card-title">VENTAS</h4>
+            <a href="{% url 'web:registrar_venta' %}" class="btn btn-primary style="border-radius: 10px;font-weight: bold;padding: 10px;color: white;align-items: center;" ><svg xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px;" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>Registrar Venta</a>
+          </div>
+          
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                    <th style="text-align: left;">Cliente</th>
+                    <th style="text-align: left;">Tipo</th>
+                    <th style="text-align: left;">Detalle del acabado</th>
+                    <th style="text-align: left;">Total de la venta</th>
+                    <th>Acciones</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                {% for venta in ventas %}
+                <tr>
+                    <td style="text-align: left;">{{venta.cliente}}</td>
+                    <td style="text-align: left;">{{venta.tipo}}</td>
+                    <td style="text-align: left;">{{venta.inventario}}</td>
+                    <td style="text-align: left;">Bs. {{venta.total_venta}}</td>
+                    <td style="display: flex;justify-content: center;gap: 5px;">
+                      <div style="display: flex; justify-content: center; gap: 5px; align-items: center;">
+                        <button type="button" class="btn btn-primary" style="padding:10px;" data-toggle="modal" data-target="#confirmViewModal{{ venta.id_venta }}">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32"><circle cx="16" cy="16" r="4" fill="currentColor"/><path fill="currentColor" d="M30.94 15.66A16.69 16.69 0 0 0 16 5A16.69 16.69 0 0 0 1.06 15.66a1 1 0 0 0 0 .68A16.69 16.69 0 0 0 16 27a16.69 16.69 0 0 0 14.94-10.66a1 1 0 0 0 0-.68ZM16 22.5a6.5 6.5 0 1 1 6.5-6.5a6.51 6.51 0 0 1-6.5 6.5Z"/></svg>                      </button>
+                    </div>
+                    <div class="modal fade" id="confirmViewModal{{ venta.id_venta }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel">DETALLE DE LA VENTA </strong> </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="width: 100%;overflow-wrap: anywhere;white-space: normal;">
+                                  <p style="text-align: justify;">
+                                    <strong>CÓDIGO:</strong> {{ venta.id_venta }} <br>
+                                    <strong>CLIENTE:</strong> {{ venta.cliente }} <br>
+                                    <strong>TIPO:</strong> {{ venta.tipo }} <br>
+                                    <strong>COSTO DE IMPRESIÓN:</strong> Bs. {{ venta.costo_impresion }} <br>
+                                    <strong>COSTO DE TRABAJO:</strong> Bs. {{ venta.costo_trabajo }} <br>
+                                    <strong>ACABADO:</strong> {% for insumo in venta.insumos.all %} {{ insumo.nombre }} {% endfor %}<br>
+                                    <strong>IMPUESTO:</strong> {% if venta.impuesto %} <svg xmlns="http://www.w3.org/2000/svg" style="color: green;font-weight: bolder;" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4L9.55 18Z"/></svg> {% else %} <svg xmlns="http://www.w3.org/2000/svg" style="color: rgb(194, 82, 82);font-weight: bolder;" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6L6.4 19Z"/></svg> {% endif %} <br>
+                                    <strong>IMPUESTO IVA:</strong> {{ venta.impuesto_iva }} % <br>
+                                    <strong>IMPUESTO IT:</strong> {{ venta.impuesto_it }} % <br>
+                                  </p>
+                                    
+                                </div>
+                                <div class="modal-footer" style="display: flex;justify-content: space-between;">
+                                  <div><strong>TOTAL: Bs. {{ venta.total_venta }}</strong> </div>
+                                  
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+  
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                      <div style="display: flex; justify-content: center; gap: 5px; align-items: center;">
+                        <button type="button" class="btn btn-danger" style="padding:10px;" data-toggle="modal" data-target="#confirmDeleteModal{{ venta.id_venta }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12Z"/></svg>
+                        </button>
+                    </div>
+                    <div class="modal fade" id="confirmDeleteModal{{ venta.id_venta }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel">Confirmar Eliminación</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" style="width: 100%;overflow-wrap: anywhere;white-space: normal;">
+                                    ¿Estás seguro de que deseas eliminar esta venta? <br> 
+                                    <strong>{{venta.cliente}} / {{venta.tipo}} / Bs. {{venta.total_venta}}</strong>
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- Formulario para enviar la solicitud de eliminación -->
+                                    <form action="{% url 'web:eliminar_venta' id_venta=venta.id_venta %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <input type="submit" class="btn btn-danger" value="Eliminar">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </td>
+                </tr>
+                
+                    
+                {% endfor %}
+               
+              </tbody>
+            </table>
+            {% if not ventas %}
+            <div style="width: 100%;text-align: center;justify-content: center;padding: 10px;">
+                <div style="text-align: center;width: 100%;justify-content: center;">No hay ventas registradas</div>
+            </div>
+            {% endif %}
+            <div class="pagination" style="width: 100%;justify-content: center;align-items: center;">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; primera</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
+                    {% endif %}
+            
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <strong>{{ num }}</strong>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <a href="?page={{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
+            
+                    <span class="current">
+                        Página {{ page_obj.number }} de {{ items.paginator.num_pages }}.
+                    </span>
+            
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">siguiente</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+    
+  </div>
+{% endblock %}

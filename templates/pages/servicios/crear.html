@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+
+{% block contenido %}
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body text-center">
+                <div style="display: flex;width: 100%;justify-content: space-between;align-items: center;padding-left: 10px;padding-right: 10px;">
+                    <h4 class="card-title">CREAR SERVICIO</h4>
+                    <a href="{% url 'web:servicios' %}" class="btn " style="border-radius: 10px;background-color: rgb(224, 224, 224);font-weight: bold;padding: 10px;color: rgb(92, 92, 92);align-items: center;">Cancelar</a>
+                </div>
+
+                <div class="table-responsive" style="width: 100%;display: flex;justify-content: center;padding: 20px;">
+                    <form method="post" style="max-width: 250px;display: flex;flex-direction: column;align-items: center;text-align: left;gap: 5px;">
+                        {% csrf_token %}
+                        <div style="width: 100%;">
+                            {{ form.as_p }}
+                        </div>
+                    
+                        {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {% for error in form.non_field_errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <div id="loadingMessage" style="display: none;">
+                            <p>Guardando cambios, por favor espere...</p>
+                            <!-- Puedes añadir aquí un ícono de carga si lo deseas -->
+                        </div>
+
+                        <button class="btn btn-primary" style="margin-top: 10px;" type="submit" id="submitBtn">Guardar Servicio</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        // Selección del formulario en lugar del botón
+        document.querySelector('form').addEventListener('submit', function() {
+            // Muestra el mensaje de carga
+            document.getElementById('loadingMessage').style.display = 'block';
+            // Deshabilita el botón de envío para evitar envíos múltiples
+            document.getElementById('submitBtn').disabled = true;
+        });
+    </script>
+</div>
+{% endblock %}

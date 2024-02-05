@@ -1,0 +1,176 @@
+{% extends 'index.html' %}
+
+{% block contenido %}
+
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+         <div class="d-flex justify-content-between">
+          <p class="card-title">Reporte de ventas</p>
+     
+         </div>
+          <canvas id="sales-chart2"></canvas>
+          {{ ventas_por_mes|json_script:"ventasPorMesData" }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 grid-margin transparent">
+      <div class="row">
+        <div class="col-md-6 mb-4 stretch-card transparent">
+          <div class="card card-tale">
+            <div class="card-body text-center">
+              <p class="mb-4">Total de Clientes</p>
+              <div style="display: flex;justify-content: center;gap: 5px;align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 1920 1792"><path fill="currentColor" d="M593 896q-162 5-265 128H194q-82 0-138-40.5T0 865q0-353 124-353q6 0 43.5 21t97.5 42.5T384 597q67 0 133-23q-5 37-5 66q0 139 81 256zm1071 637q0 120-73 189.5t-194 69.5H523q-121 0-194-69.5T256 1533q0-53 3.5-103.5t14-109T300 1212t43-97.5t62-81t85.5-53.5T602 960q10 0 43 21.5t73 48t107 48t135 21.5t135-21.5t107-48t73-48t43-21.5q61 0 111.5 20t85.5 53.5t62 81t43 97.5t26.5 108.5t14 109t3.5 103.5zM640 256q0 106-75 181t-181 75t-181-75t-75-181t75-181T384 0t181 75t75 181zm704 384q0 159-112.5 271.5T960 1024T688.5 911.5T576 640t112.5-271.5T960 256t271.5 112.5T1344 640zm576 225q0 78-56 118.5t-138 40.5h-134q-103-123-265-128q81-117 81-256q0-29-5-66q66 23 133 23q59 0 119-21.5t97.5-42.5t43.5-21q124 0 124 353zm-128-609q0 106-75 181t-181 75t-181-75t-75-181t75-181t181-75t181 75t75 181z"/></svg>
+                <p style="font-size: 30px;font-weight: bolder;">{{total_clientes}}</p>
+              </div>
+             
+          
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4 stretch-card transparent">
+          <div class="card card-dark-blue">
+            <div class="card-body text-center">
+              <p class="mb-4">Total Ventas</p>
+              <div style="display: flex;justify-content: center;gap: 5px;align-items: center;">
+                Bs. 
+                 <p style="font-size: 30px;font-weight: bolder;">{{total_ventas}}</p>
+              </div>
+             
+          
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
+          <div class="card card-light-blue">
+            <div class="card-body text-center">
+              <p class="mb-4">Total de Servicios</p>
+              <div style="display: flex;justify-content: center;gap: 5px;align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24"><path fill="currentColor" d="M19 9q-1.425 0-2.475-.85T15.125 6H8.85q-.275 1.05-1.037 1.813T6 8.85v6.275q1.3.35 2.15 1.4T9 19q0 1.65-1.175 2.825T5 23q-1.65 0-2.825-1.175T1 19q0-1.425.85-2.475t2.15-1.4V8.85q-1.3-.35-2.15-1.4T1 5q0-1.65 1.175-2.825T5 1q1.4 0 2.45.85T8.85 4h6.275q.35-1.3 1.4-2.15T19 1q1.65 0 2.825 1.175T23 5q0 1.65-1.175 2.825T19 9ZM5 21q.825 0 1.413-.6T7 19q0-.825-.587-1.412T5 17q-.8 0-1.4.588T3 19q0 .8.6 1.4T5 21ZM5 7q.825 0 1.413-.587T7 5q0-.825-.587-1.412T5 3q-.8 0-1.4.588T3 5q0 .825.6 1.413T5 7Zm14 16q-1.65 0-2.825-1.175T15 19q0-1.65 1.175-2.825T19 15q1.65 0 2.825 1.175T23 19q0 1.65-1.175 2.825T19 23Zm0-2q.825 0 1.413-.6T21 19q0-.825-.587-1.412T19 17q-.825 0-1.412.588T17 19q0 .8.588 1.4T19 21Zm0-14q.825 0 1.413-.587T21 5q0-.825-.587-1.412T19 3q-.825 0-1.412.588T17 5q0 .825.588 1.413T19 7ZM5 21q-.8 0-1.4-.6T3 19q0-.825.6-1.412T5 17q.825 0 1.413.588T7 19q0 .8-.587 1.4T5 21ZM5 7q-.8 0-1.4-.587T3 5q0-.825.6-1.412T5 3q.825 0 1.413.588T7 5q0 .825-.587 1.413T5 7Zm14 14q-.825 0-1.412-.6T17 19q0-.825.588-1.412T19 17q.825 0 1.413.588T21 19q0 .8-.587 1.4T19 21Zm0-14q-.825 0-1.412-.587T17 5q0-.825.588-1.412T19 3q.825 0 1.413.588T21 5q0 .825-.587 1.413T19 7Z"/></svg>
+                                <p style="font-size: 30px;font-weight: bolder;">{{total_servicios}}</p>
+              </div>
+             
+          
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 stretch-card transparent">
+          <div class="card card-light-danger">
+            <div class="card-body text-center">
+              <p class="mb-4">Total de Sucursales</p>
+              <div style="display: flex;justify-content: center;gap: 5px;align-items: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 512 512"><path fill="currentColor" d="M320 176V16H32v480h128v-96h32v96h288V176ZM112 432H80v-32h32Zm0-80H80v-32h32Zm0-80H80v-32h32Zm0-80H80v-32h32Zm0-80H80V80h32Zm128-32h32v32h-32Zm-48 272h-32v-32h32Zm0-80h-32v-32h32Zm0-80h-32v-32h32Zm0-80h-32V80h32Zm80 320h-32v-32h32Zm0-80h-32v-32h32Zm0-80h-32v-32h32Zm0-80h-32v-32h32v32Zm176 272H320v-32h32v-32h-32v-48h32v-32h-32v-48h32v-32h-32v-32h128Z"/><path fill="currentColor" d="M384 400h32v32h-32zm0-80h32v32h-32zm0-80h32v32h-32z"/></svg>
+                                <p style="font-size: 30px;font-weight: bolder;">{{total_sucursales}}</p>
+              </div>
+             
+          
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+
+  <div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-title mb-0">Top Insumos</p>
+          <div class="table-responsive">
+            <table class="table table-striped table-borderless">
+              <thead>
+                  <tr>
+                      <th>Nombre del Insumo</th>
+                      <th>Total Adquiridos</th>
+                  </tr>  
+              </thead>
+              <tbody>
+                  {% for insumo in top_insumos %}
+                  <tr>
+                      <td>{{ insumo.insumos__nombre }}</td>
+                      <td class="font-weight-bold">{{ insumo.total_usos }}</td>
+                  </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+   
+  <div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-title">Top Clientes</p>
+          <div class="row">
+            <div class="col-12">
+              <div class="table-responsive">
+                <table class="display expandable-table" style="width: 100%;">
+                  <thead>
+                      <tr>
+                          <th>Nombre del Cliente</th>
+                          <th>Total de Ventas</th>
+                      </tr>  
+                  </thead>
+                  <tbody>
+                      {% for cliente in top_clientes %}
+                      <tr>
+                          <td>{{ cliente.cliente__nombre }} {{ cliente.cliente__apellidos }}</td>
+                          <td class="font-weight-bold">{{ cliente.total_ventas }} Bs</td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+              
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    if ($("#sales-chart2").length && document.getElementById('ventasPorMesData')) {
+      var ventasPorMes = JSON.parse(document.getElementById('ventasPorMesData').textContent);
+
+      var SalesChartCanvas = $("#sales-chart2").get(0).getContext("2d");
+
+      // Preparar los datos para el gráfico
+      var labels = ventasPorMes.map(function (v) {
+        return new Date(v.mes).toLocaleString('default', { month: 'short', year: 'numeric' });
+      });
+      var data = ventasPorMes.map(function (v) { return v.total_ventas_mes; });
+
+      var SalesChart = new Chart(SalesChartCanvas, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Ventas Totales',
+            data: data,
+            backgroundColor: '#4B49AC'
+          }]
+        },
+        // ... Opciones adicionales de Chart.js ...
+      });
+    }
+  });
+</script>
+  
+{% endblock %}

@@ -1,0 +1,60 @@
+Date: 25/12/2023
+Time: 18:42
+Phone Number: +59162424288
+Message: Cliente: ANAHIFERNANDEZ. Acabados: LONA. Total: 190.0
+--------------------
+Date: 5/1/2024
+Time: 20:46
+Phone Number: +59162424288
+Message: Cliente: GUILLERMOCHIPANA. Acabados: ROLLERS. Total: 340.0
+--------------------
+Date: 5/1/2024
+Time: 20:51
+Phone Number: +59162424288
+Message: Cliente: GUILLERMOCHIPANA. Acabados: ROLLERS. Total: 340.0
+--------------------
+Date: 4/2/2024
+Time: 15:39
+Phone Number: +59162424288
+Message: Hola te encuentras en la fase: Pendiente, de tu servicio de imprenta. Te estaremos informando el proceso de tu pedido gracias.
+--------------------
+Date: 4/2/2024
+Time: 15:45
+Phone Number: +59162424288
+Message: Hola te encuentras en la fase: Impresion, de tu servicio de imprenta. Te estaremos informando el proceso de tu pedido gracias.
+--------------------
+Date: 4/2/2024
+Time: 16:0
+Phone Number: +59162424288
+Message: Hola te encuentras en la fase: Acabado final, ya esta Listo!, puedes pasar a recoger.
+--------------------
+Date: 4/2/2024
+Time: 18:5
+Phone Number: +59176540659
+Message: Hola te encuentras en la fase: Impresion, Nos encontramos imprimiendo. Te estaremos informando el proceso de tu pedido gracias.
+--------------------
+Date: 4/2/2024
+Time: 18:8
+Phone Number: +59176540659
+Message: Hola te encuentras en la fase: Pendiente, de tu servicio de imprenta. Te estaremos informando el proceso de tu pedido gracias.
+--------------------
+Date: 4/2/2024
+Time: 18:9
+Phone Number: +59176540659
+Message: Hola te encuentras en la fase: Pendiente, de tu servicio de imprenta. Te estaremos informando el proceso de tu pedido gracias.
+--------------------
+Date: 4/2/2024
+Time: 18:11
+Phone Number: +59170693215
+Message: Hola te encuentras en la fase: Rayado y corte, ya estamos en la segunda fase. Te estaremos informando el proceso de tu pedido gracias.
+--------------------
+Date: 4/2/2024
+Time: 18:20
+Phone Number: +59170693215
+Message: Hola te encuentras en la fase: Pendiente, de tu servicio de imprenta. Te estaremos informando el proceso de tu pedido gracias.
+--------------------
+Date: 4/2/2024
+Time: 18:21
+Phone Number: +59170693215
+Message: Hola te encuentras en la fase: Pendiente, de tu servicio de imprenta. Te estaremos informando el proceso de tu pedido gracias.
+--------------------
